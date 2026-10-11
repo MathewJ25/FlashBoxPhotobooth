@@ -1,0 +1,129 @@
+{% extends "base.html" %} {% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-11 text-center">
+    <!-- Hero Section -->
+    <div
+      class="p-5 mb-5 rounded-4 shadow-lg text-white position-relative overflow-hidden"
+      style="
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+          url(&quot;https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80&quot;);
+        background-size: cover;
+        background-position: center;
+      "
+    >
+      <div class="container py-4">
+        <h1 class="display-4 fw-bold mb-3 text-warning">
+          Capture Your Best Moments with FlashBox Photobooth!
+        </h1>
+        <p class="lead mb-4 col-lg-8 mx-auto">
+          Make your weddings, birthdays, and corporate events unforgettable with
+          high-quality prints, instant sharing, and fun props.
+        </p>
+        {% if not current_user.is_authenticated %}
+        <div class="d-flex justify-content-center gap-3">
+          <a
+            href="{{ url_for('register') }}"
+            class="btn btn-warning btn-lg fw-bold text-dark px-4 shadow-sm"
+            >Book Now / Register</a
+          >
+          <a
+            href="{{ url_for('login') }}"
+            class="btn btn-outline-light btn-lg fw-bold px-4"
+            >Login</a
+          >
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Packages Section -->
+    <div class="mb-5">
+      <h2 class="fw-bold text-dark mb-4">Our Photobooth Packages</h2>
+      <div class="row g-4">
+        <!-- Package 1 -->
+        <div class="col-md-4">
+          <div
+            class="card h-100 shadow-sm border-0 rounded-4 p-3 bg-white text-dark"
+          >
+            <div class="card-body d-flex flex-column">
+              <h4 class="fw-bold text-primary mb-3">Package 1</h4>
+              <h5 class="fw-bold text-secondary mb-3">Standard Print</h5>
+              <h3 class="fw-bold text-success mb-4">₱6,999</h3>
+              <ul class="list-unstyled text-start mb-4 flex-grow-1">
+                <li class="mb-2">✅ 2 Hours Photobooth Operation</li>
+                <li class="mb-2">✅ Unlimited Standard Prints</li>
+                <li class="mb-2">✅ Customized Photo Template Layout</li>
+                <li class="mb-2">✅ Fun & Exciting Props</li>
+                <li class="mb-2">✅ Online Gallery Link</li>
+              </ul>
+              <a
+                href="{{ url_for('register') }}"
+                class="btn btn-outline-primary fw-bold w-100 mt-auto"
+                >Choose Package 1</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Package 2 -->
+        <div class="col-md-4">
+          <div
+            class="card h-100 shadow-sm border-0 rounded-4 p-3 bg-white text-dark border-top border-warning border-4"
+          >
+            <div class="card-body d-flex flex-column">
+              <span
+                class="badge bg-warning text-dark align-self-center mb-2 fw-bold"
+                >Most Popular</span
+              >
+              <h4 class="fw-bold text-primary mb-3">Package 2</h4>
+              <h5 class="fw-bold text-secondary mb-3">Unli Print + Backdrop</h5>
+              <h3 class="fw-bold text-success mb-4">₱8,999</h3>
+              <ul class="list-unstyled text-start mb-4 flex-grow-1">
+                <li class="mb-2">✅ 3 Hours Photobooth Operation</li>
+                <li class="mb-2">✅ Unlimited High-Quality Prints</li>
+                <li class="mb-2">✅ Premium Backdrop Setup</li>
+                <li class="mb-2">✅ Customized Template & Live View</li>
+                <li class="mb-2">✅ Premium Props & Accessories</li>
+                <li class="mb-2">✅ Free Soft Copies (Google Drive Link)</li>
+              </ul>
+              <a
+                href="{{ url_for('register') }}"
+                class="btn btn-warning fw-bold text-dark w-100 mt-auto"
+                >Choose Package 2</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Package 3 -->
+        <div class="col-md-4">
+          <div
+            class="card h-100 shadow-sm border-0 rounded-4 p-3 bg-white text-dark"
+          >
+            <div class="card-body d-flex flex-column">
+              <h4 class="fw-bold text-primary mb-3">Package 3</h4>
+              <h5 class="fw-bold text-secondary mb-3">VIP All-In Package</h5>
+              <h3 class="fw-bold text-success mb-4">₱11,999</h3>
+              <ul class="list-unstyled text-start mb-4 flex-grow-1">
+                <li class="mb-2">✅ 4 Hours Photobooth Operation</li>
+                <li class="mb-2">✅ Unlimited Prints with Fast Printer</li>
+                <li class="mb-2">✅ Grand Custom Backdrop & Setup</li>
+                <li class="mb-2">✅ VIP Prop Collection & Signages</li>
+                <li class="mb-2">✅ On-site Technical Assistant</li>
+                <li class="mb-2">✅ Instant QR Code Photo Download</li>
+                <li class="mb-2">✅ Free USB Flash Drive of All Photos</li>
+              </ul>
+              <a
+                href="{{ url_for('register') }}"
+                class="btn btn-outline-primary fw-bold w-100 mt-auto"
+                >Choose Package 3</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

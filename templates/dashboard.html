@@ -1,0 +1,131 @@
+{% extends "base.html" %} {% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-10">
+    <div class="card shadow-sm border-0 mb-4 bg-white">
+      <div class="card-body p-4">
+        <h2 class="fw-bold text-dark">
+          Welcome back, {{ current_user.name }}! 👋
+        </h2>
+        <p class="text-muted">
+          Book your photobooth session or chat with our admin below.
+        </p>
+
+        <div class="mb-4">
+          <a
+            href="{{ url_for('chat') }}"
+            class="btn btn-warning fw-bold text-dark px-4 py-2 shadow-sm position-relative"
+          >
+            💬 Chat with Admin {% if unread_count > 0 %}
+            <span
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+            >
+              {{ unread_count }} New
+            </span>
+            {% endif %}
+          </a>
+        </div>
+        <hr />
+
+        <h4 class="fw-bold mb-3">Book a New Photobooth Session</h4>
+        <form method="POST">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label fw-bold">Event Date</label>
+              <input
+                type="date"
+                name="event_date"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-bold">Select Package</label>
+              <select name="package" class="form-select" required>
+                <option value="" selected disabled>Choose package...</option>
+                <option value="Package 1: Standard Print (2 Hours) - ₱6,999">
+                  Package 1: Standard Print (2 Hours) - ₱6,999
+                </option>
+                <option
+                  value="Package 2: Unli Print + Backdrop (3 Hours) - ₱8,999"
+                >
+                  Package 2: Unli Print + Backdrop (3 Hours) - ₱8,999
+                </option>
+                <option
+                  value="Package 3: VIP All-In Package (4 Hours) - ₱11,999"
+                >
+                  Package 3: VIP All-In Package (4 Hours) - ₱11,999
+                </option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-bold">Event Location / Venue</label>
+              <input
+                type="text"
+                name="location"
+                class="form-control"
+                placeholder="e.g. Manila Hotel, Grand Ballroom"
+                required
+              />
+            </div>
+            <div class="col-12 mt-3">
+              <button type="submit" class="btn btn-primary fw-bold px-4">
+                Submit Booking
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card shadow-sm border-0 mb-4">
+      <div class="card-header bg-dark text-white">
+        <h5 class="mb-0">📅 My Bookings</h5>
+      </div>
+      <div class="card-body">
+        {% if bookings %}
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead class="table-light">
+              <tr>
+                <th>Date</th>
+                <th>Package</th>
+                <th>Location</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for booking in bookings %}
+              <tr>
+                <td>{{ booking.event_date }}</td>
+                <td class="fw-bold">{{ booking.package }}</td>
+                <td>{{ booking.location }}</td>
+                <td>
+                  {% if booking.status == 'Accepted' %}
+                  <span class="badge bg-success">Accepted</span>
+                  {% elif booking.status == 'Declined' %}
+                  <span class="badge bg-danger">Declined</span>
+                  {% else %}
+                  <span class="badge bg-warning text-dark">Pending</span>
+                  {% endif %}
+                </td>
+                <td>
+                  <a
+                    href="{{ url_for('delete_booking', booking_id=booking.id) }}"
+                    class="btn btn-sm btn-danger fw-bold"
+                    >Delete</a
+                  >
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% else %}
+        <p class="text-muted mb-0">You have no bookings yet.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

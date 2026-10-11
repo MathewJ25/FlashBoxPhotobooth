@@ -1,0 +1,22 @@
+<script>
+  setInterval(function () {
+    fetch("/api/unread-count")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.unread_count !== undefined) {
+          let badge = document.getElementById("chat-badge");
+          let chatBtn = document.querySelector('a[href*="/chat"]');
+          if (data.unread_count > 0 && chatBtn) {
+            if (!badge) {
+              chatBtn.classList.add("position-relative");
+              chatBtn.innerHTML += ` <span id="chat-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">${data.unread_count} New</span>`;
+            } else {
+              badge.innerText = data.unread_count + " New";
+            }
+          } else if (badge) {
+            badge.remove();
+          }
+        }
+      });
+  }, 3000);
+</script>

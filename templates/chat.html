@@ -1,0 +1,73 @@
+{% extends "base.html" %} {% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card shadow-sm border-0 mb-4">
+      <div
+        class="card-header bg-dark text-white d-flex justify-content-between align-items-center"
+      >
+        <h5 class="mb-0">💬 Inquire / Chat with Admin</h5>
+        <div class="d-flex align-items-center gap-2">
+          <a
+            href="{{ url_for('customer_dashboard') }}"
+            class="btn btn-sm btn-light fw-bold text-dark px-3"
+            >Back</a
+          >
+          <span class="badge bg-warning text-dark fw-bold"
+            >FlashBox Support</span
+          >
+        </div>
+      </div>
+      <div class="card-body bg-light" style="height: 400px; overflow-y: auto">
+        {% if messages %} {% for msg in messages %}
+        <div
+          class="d-flex flex-column mb-3 {% if msg.sender_id == current_user.id %}align-items-end{% else %}align-items-start{% endif %}"
+        >
+          <div
+            class="p-3 rounded shadow-sm position-relative {% if msg.sender_id == current_user.id %}bg-primary text-white{% else %}bg-white text-dark border{% endif %}"
+            style="max-width: 75%"
+          >
+            <div style="word-break: break-word">{{ msg.content }}</div>
+            <div
+              class="d-flex justify-content-between align-items-center mt-1"
+              style="font-size: 0.75rem; opacity: 0.8"
+            >
+              <span>{{ msg.timestamp.strftime('%Y-%m-%d %H:%M') }}</span>
+              <a
+                href="{{ url_for('delete_message', message_id=msg.id) }}"
+                class="text-decoration-none ms-3 {% if msg.sender_id == current_user.id %}text-white-50{% else %}text-danger{% endif %}"
+                title="Delete Message"
+                >[Delete]</a
+              >
+            </div>
+          </div>
+        </div>
+        {% endfor %} {% else %}
+        <p class="text-muted text-center my-auto">
+          No messages yet. Send a message to start the conversation!
+        </p>
+        {% endif %}
+      </div>
+      <div class="card-footer bg-white p-3">
+        <form method="POST">
+          <div class="input-group">
+            <input
+              type="text"
+              name="content"
+              class="form-control"
+              placeholder="Type your message or inquiry here..."
+              required
+              autocomplete="off"
+            />
+            <button
+              type="submit"
+              class="btn btn-warning fw-bold text-dark px-4"
+            >
+              Send
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
