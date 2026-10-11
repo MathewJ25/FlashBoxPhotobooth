@@ -97,12 +97,14 @@
                       id="status-badge-{{ booking.id }}"
                       >Accepted</span
                     >
+                    <div id="actions-{{ booking.id }}"></div>
                     {% else %}
                     <span
                       class="badge bg-danger mb-1"
                       id="status-badge-{{ booking.id }}"
                       >Declined</span
                     >
+                    <div id="actions-{{ booking.id }}"></div>
                     {% endif %}
                   </div>
                   {% endfor %} {% else %}
@@ -165,7 +167,8 @@
                   statusBadge.innerText = "Declined";
                 }
               }
-              if (actionButtons && data.status === "Accepted") {
+              // Tanggalin ang action buttons mapa-Accepted man o Declined
+              if (actionButtons) {
                 actionButtons.innerHTML = "";
               }
             }
