@@ -174,20 +174,17 @@ def decline_booking(booking_id):
     flash('Booking declined.', 'info')
     return redirect(url_for('admin_dashboard'))
 
-@app.route('/delete/booking/<int:booking_id>')
+@app.route('/delete_booking/<int:booking_id>')
 @login_required
 def delete_booking(booking_id):
     booking = Booking.query.get_or_404(booking_id)
-    if booking.user_id != current_user.id and current_user.role != 'admin':
-        return jsonify({'success': False, 'error': 'Access denied'}), 403
-        
+    
     db.session.delete(booking)
     db.session.commit()
     
-    if request.headers.get('X-Requested-With') == 'XMLHttpRequest' or 'application/json' in request.accept_mimetypes:
-        return jsonify({'success': True, 'booking_id': booking_id})
-        
-    flash('Booking deleted successfully!', 'success')
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        return jsonify(success=True, booking_id=booking_id)
+    
     if current_user.role == 'admin':
         return redirect(url_for('admin_dashboard'))
     return redirect(url_for('customer_dashboard'))
