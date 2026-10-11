@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, render_template, redirect, url_for, request, flash, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
@@ -269,4 +271,6 @@ if __name__ == '__main__':
             admin_user = User(name='Administrator', email='admin@photobooth.com', password=hashed_pw, role='admin')
             db.session.add(admin_user)
             db.session.commit()
-    app.run(debug=True)
+    
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
