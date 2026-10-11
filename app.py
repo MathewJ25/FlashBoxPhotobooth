@@ -208,6 +208,16 @@ def api_unread_count():
             count = Message.query.filter_by(sender_id=admin.id, receiver_id=current_user.id, is_read=False).count()
         return jsonify({'unread_count': count})
 
+@app.route('/delete-message/<int:message_id>')
+@login_required
+def delete_message(message_id):
+    message = Message.query.get_or_404(message_id)
+    # Siguraduhing ang may-ari o ang admin lang ang pwedeng mag-delete
+    if message.sender_id == current_user.id or current_user.role == 'admin':
+        db.session.delete(message)
+        db.session.commit()
+    return redirect(request.referrer or url_for('chat'))
+
 @app.route('/chat', methods=['GET', 'POST'])
 @login_required
 def chat():
