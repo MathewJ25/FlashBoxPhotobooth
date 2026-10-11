@@ -1,59 +1,103 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FlashBox Photobooth</title>
     <!-- Bootstrap CSS CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <style>
-        body {
-            background: url("https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop") no-repeat center center fixed;
-            background-size: cover;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        .navbar {
-            background-color: rgba(33, 37, 41, 0.95) !important;
-            backdrop-filter: blur(5px);
-        }
+      body {
+        background: url("https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop")
+          no-repeat center center fixed;
+        background-size: cover;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      .navbar {
+        background-color: rgba(33, 37, 41, 0.95) !important;
+        backdrop-filter: blur(5px);
+      }
     </style>
-</head>
-<body>
-
-    <!-- Navbar tulad ng nasa screenshot -->
+  </head>
+  <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark shadow-sm px-4">
-        <div class="container-fluid">
-            <a class="navbar-brand fw-bold text-warning" href="{{ url_for('index') }}">📸 FlashBox Photobooth</a>
-            <div class="ms-auto d-flex align-items-center gap-3">
-                {% if current_user.is_authenticated %}
-                    {% if current_user.role == 'admin' %}
-                        <a href="{{ url_for('admin_dashboard') }}" class="btn btn-outline-light btn-sm fw-bold">Dashboard</a>
-                    {% else %}
-                        <a href="{{ url_for('customer_dashboard') }}" class="btn btn-outline-light btn-sm fw-bold">Dashboard</a>
-                        <a href="{{ url_for('chat') }}" class="btn btn-outline-warning btn-sm fw-bold">Chat Support</a>
-                    {% endif %}
-                    <a href="{{ url_for('logout') }}" class="btn btn-danger btn-sm fw-bold">Logout</a>
-                {% else %}
-                    <a href="{{ url_for('login') }}" class="btn btn-warning btn-sm fw-bold text-dark">Login</a>
-                    <a href="{{ url_for('register') }}" class="btn btn-outline-light btn-sm fw-bold">Register</a>
-                {% endif %}
-            </div>
+      <div class="container-fluid">
+        <a
+          class="navbar-brand fw-bold text-warning"
+          href="{{ url_for('index') }}"
+          >📸 FlashBox Photobooth</a
+        >
+        <div class="ms-auto d-flex align-items-center gap-3">
+          {% if current_user.is_authenticated %} 
+            {% if current_user.role == 'admin' %}
+              <a
+                href="{{ url_for('admin_dashboard') }}"
+                class="btn btn-outline-light btn-sm fw-bold"
+                >Dashboard</a
+              >
+            {% else %}
+              <a
+                href="{{ url_for('customer_dashboard') }}"
+                class="btn btn-outline-light btn-sm fw-bold"
+                >Dashboard</a
+              >
+              <a
+                href="{{ url_for('chat') }}"
+                class="btn btn-outline-warning btn-sm fw-bold"
+                >Chat Support</a
+              >
+            {% endif %}
+            <a
+              href="{{ url_for('logout') }}"
+              class="btn btn-danger btn-sm fw-bold"
+              >Logout</a
+            >
+          {% else %}
+            <a
+              href="{{ url_for('login') }}"
+              class="btn btn-warning btn-sm fw-bold text-dark"
+              >Login</a
+            >
+            <a
+              href="{{ url_for('register') }}"
+              class="btn btn-outline-light btn-sm fw-bold"
+              >Register</a
+            >
+          {% endif %}
         </div>
+      </div>
     </nav>
 
     <!-- Main Content Container -->
-    <div class="container my-4">
-        {% block content %}
-        {% endblock %}
-    </div>
+    <div class="container my-4">{% block content %} {% endblock %}</div>
 
-    <!-- Footer -->
-    <footer class="text-center py-4 text-white mt-auto" style="background-color: rgba(0, 0, 0, 0.8);">
-        <p class="mb-1">Connect with us: <a href="#" class="text-warning text-decoration-none">FB: FlashBox Photobooth</a> | <a href="#" class="text-warning text-decoration-none">IG: FlashBox Photobooth</a></p>
-        <small>© 2026 FlashBox Photobooth. All rights reserved.</small>
+    <!-- Photography-themed Light Footer -->
+    <footer
+      class="text-center py-4 mt-auto shadow-sm"
+      style="background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(245, 240, 235, 0.95)), url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1920&auto=format&fit=crop') no-repeat center center; background-size: cover; border-top: 1px solid #e0d5c1;"
+    >
+      <div class="container">
+        <p class="mb-1 text-dark fw-semibold">
+          📸 Connect with us:
+          <a href="#" class="text-primary text-decoration-none fw-bold"
+            >FB: FlashBox Photobooth</a
+          >
+          |
+          <a href="#" class="text-primary text-decoration-none fw-bold"
+            >IG: FlashBox Photobooth</a
+          >
+        </p>
+        <small class="text-muted"
+          >© 2026 FlashBox Photobooth. Captured moments, timeless memories. All rights reserved.</small
+        >
+      </div>
     </footer>
 
     <!-- Bootstrap JS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+  </body>
 </html>
