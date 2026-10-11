@@ -12,9 +12,10 @@
     <style>
       body {
         /* Warm studio photography light theme: creamy gradient overlay na may elegant camera lens/studio background */
-        background: linear-gradient(rgba(245, 242, 238, 0.94), rgba(238, 233, 226, 0.94)), 
-                    url("https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1920&auto=format&fit=crop") 
-                    no-repeat center center fixed;
+        background:
+          linear-gradient(rgba(245, 242, 238, 0.94), rgba(238, 233, 226, 0.94)),
+          url("https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1920&auto=format&fit=crop")
+            no-repeat center center fixed;
         background-size: cover;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         color: #2c3e50;
@@ -35,41 +36,41 @@
           >📸 FlashBox Photobooth</a
         >
         <div class="ms-auto d-flex align-items-center gap-3">
-          {% if current_user.is_authenticated %} 
-            {% if current_user.role == 'admin' %}
-              <a
-                href="{{ url_for('admin_dashboard') }}"
-                class="btn btn-outline-light btn-sm fw-bold"
-                >Dashboard</a
-              >
-            {% else %}
-              <a
-                href="{{ url_for('customer_dashboard') }}"
-                class="btn btn-outline-light btn-sm fw-bold"
-                >Dashboard</a
-              >
-              <a
-                href="{{ url_for('chat') }}"
-                class="btn btn-outline-warning btn-sm fw-bold"
-                >Chat Support</a
-              >
-            {% endif %}
-            <a
-              href="{{ url_for('logout') }}"
-              class="btn btn-danger btn-sm fw-bold"
-              >Logout</a
-            >
+          {% if current_user.is_authenticated %} {% if current_user.role ==
+          'admin' %}
+          <a
+            href="{{ url_for('admin_dashboard') }}"
+            class="btn btn-outline-light btn-sm fw-bold"
+            >Dashboard</a
+          >
           {% else %}
-            <a
-              href="{{ url_for('login') }}"
-              class="btn btn-warning btn-sm fw-bold text-dark"
-              >Login</a
-            >
-            <a
-              href="{{ url_for('register') }}"
-              class="btn btn-outline-light btn-sm fw-bold"
-              >Register</a
-            >
+          <a
+            href="{{ url_for('customer_dashboard') }}"
+            class="btn btn-outline-light btn-sm fw-bold"
+            >Dashboard</a
+          >
+          <a
+            href="{{ url_for('chat') }}"
+            class="btn btn-outline-warning btn-sm fw-bold"
+            >Chat Support</a
+          >
+          {% endif %}
+          <a
+            href="{{ url_for('logout') }}"
+            class="btn btn-danger btn-sm fw-bold"
+            >Logout</a
+          >
+          {% else %}
+          <a
+            href="{{ url_for('login') }}"
+            class="btn btn-warning btn-sm fw-bold text-dark"
+            >Login</a
+          >
+          <a
+            href="{{ url_for('register') }}"
+            class="btn btn-outline-light btn-sm fw-bold"
+            >Register</a
+          >
           {% endif %}
         </div>
       </div>
@@ -81,7 +82,13 @@
     <!-- Photography-themed Light Footer -->
     <footer
       class="text-center py-4 mt-auto shadow-sm"
-      style="background: linear-gradient(rgba(245, 242, 238, 0.95), rgba(235, 230, 222, 0.95)); border-top: 1px solid #dcd3c1;"
+      style="
+        background: linear-gradient(
+          rgba(245, 242, 238, 0.95),
+          rgba(235, 230, 222, 0.95)
+        );
+        border-top: 1px solid #dcd3c1;
+      "
     >
       <div class="container">
         <p class="mb-1 text-dark fw-semibold">
@@ -95,7 +102,8 @@
           >
         </p>
         <small class="text-muted"
-          >© 2026 FlashBox Photobooth. Captured moments, timeless memories. All rights reserved.</small
+          >© 2026 FlashBox Photobooth. Captured moments, timeless memories. All
+          rights reserved.</small
         >
       </div>
     </footer>
