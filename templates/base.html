@@ -11,8 +11,8 @@
     />
     <style>
       body {
-        /* Light photography-themed background: warm studio paper/linen aesthetic with soft light */
-        background: linear-gradient(rgba(255, 255, 255, 0.92), rgba(248, 245, 240, 0.92)), 
+        /* Warm studio photography light theme: creamy gradient overlay na may elegant camera lens/studio background */
+        background: linear-gradient(rgba(245, 242, 238, 0.94), rgba(238, 233, 226, 0.94)), 
                     url("https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1920&auto=format&fit=crop") 
                     no-repeat center center fixed;
         background-size: cover;
@@ -20,21 +20,17 @@
         color: #2c3e50;
       }
       .navbar {
-        background-color: rgba(255, 255, 255, 0.95) !important;
+        background-color: rgba(44, 62, 80, 0.95) !important;
         backdrop-filter: blur(5px);
-        border-bottom: 1px solid #e0d5c1;
-      }
-      .navbar-brand, .nav-link {
-        color: #2c3e50 !important;
       }
     </style>
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light shadow-sm px-4">
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm px-4">
       <div class="container-fluid">
         <a
-          class="navbar-brand fw-bold text-dark"
+          class="navbar-brand fw-bold text-warning"
           href="{{ url_for('index') }}"
           >📸 FlashBox Photobooth</a
         >
@@ -43,18 +39,18 @@
             {% if current_user.role == 'admin' %}
               <a
                 href="{{ url_for('admin_dashboard') }}"
-                class="btn btn-outline-dark btn-sm fw-bold"
+                class="btn btn-outline-light btn-sm fw-bold"
                 >Dashboard</a
               >
             {% else %}
               <a
                 href="{{ url_for('customer_dashboard') }}"
-                class="btn btn-outline-dark btn-sm fw-bold"
+                class="btn btn-outline-light btn-sm fw-bold"
                 >Dashboard</a
               >
               <a
                 href="{{ url_for('chat') }}"
-                class="btn btn-outline-warning btn-sm fw-bold text-dark"
+                class="btn btn-outline-warning btn-sm fw-bold"
                 >Chat Support</a
               >
             {% endif %}
@@ -66,12 +62,12 @@
           {% else %}
             <a
               href="{{ url_for('login') }}"
-              class="btn btn-dark btn-sm fw-bold"
+              class="btn btn-warning btn-sm fw-bold text-dark"
               >Login</a
             >
             <a
               href="{{ url_for('register') }}"
-              class="btn btn-outline-dark btn-sm fw-bold"
+              class="btn btn-outline-light btn-sm fw-bold"
               >Register</a
             >
           {% endif %}
@@ -85,7 +81,7 @@
     <!-- Photography-themed Light Footer -->
     <footer
       class="text-center py-4 mt-auto shadow-sm"
-      style="background: rgba(255, 255, 255, 0.9); border-top: 1px solid #e0d5c1;"
+      style="background: linear-gradient(rgba(245, 242, 238, 0.95), rgba(235, 230, 222, 0.95)); border-top: 1px solid #dcd3c1;"
     >
       <div class="container">
         <p class="mb-1 text-dark fw-semibold">
